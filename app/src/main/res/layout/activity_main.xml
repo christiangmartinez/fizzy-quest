@@ -61,7 +61,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="155dp"
-        android:text="Hello there traveler! I am in search of the most delicious and effervescent barely pops in all the land. I require aid in my search. Will you join me, fair traveler?"
+        android:text="Hello there traveler! I am in search of only  the most delicious and effervescent barley pops in all the land. I require aid in my search. Will you join me, fair traveler?"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
