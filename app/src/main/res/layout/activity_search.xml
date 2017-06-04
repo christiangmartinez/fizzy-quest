@@ -6,4 +6,50 @@
     android:layout_height="match_parent"
     tools:context="io.xtian.fizzyquest.ui.SearchActivity">
 
+    <EditText
+        android:id="@+id/userParams"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="74dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginTop="162dp"
+        android:ems="10"
+        android:hint="type: IPA, Lager, Stout..."
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:text="Beer Search"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/userParams"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/userParams" />
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="0dp"
+        android:layout_height="57dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="Get Beers"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="1dp" />
 </android.support.constraint.ConstraintLayout>
