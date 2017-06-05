@@ -1,5 +1,7 @@
 package io.xtian.fizzyquest.services;
 
+import android.util.Log;
+
 import io.xtian.fizzyquest.Constants;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -14,6 +16,7 @@ public class FizzyService {
         urlBuilder.addQueryParameter(Constants.FIZZY_STYLE_QUERY_PARAMETER, styleId);
         urlBuilder.addQueryParameter(Constants.FIZZY_QUERY_PARAM, Constants.FIZZY_KEY);
         String url = urlBuilder.build().toString();
+        Log.d("URL", url);
         Request request = new Request.Builder().url(url).build();
         Call call = client.newCall(request);
         call.enqueue(callback);
