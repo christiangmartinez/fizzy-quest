@@ -7,9 +7,12 @@ public class Beer {
     private String mAbv;
     private String mIbu;
 
-    public Beer(String beerId, String name) {
+    public Beer(String beerId, String name, String description, String abv, String ibu) {
         this.mBeerId = beerId;
         this.mName = name;
+        this.mDescription = description;
+        this.mAbv = abv;
+        this.mIbu = ibu;
     }
 
     public String getBeerId() {
@@ -18,6 +21,18 @@ public class Beer {
 
     public String getName() {
         return mName;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
+
+    public String getAbv() {
+        return mAbv;
+    }
+
+    public String getIbu() {
+        return mIbu;
     }
 
 }

@@ -14,9 +14,6 @@ import butterknife.ButterKnife;
 import io.xtian.fizzyquest.R;
 import io.xtian.fizzyquest.models.Beer;
 
-/**
- * Created by michellewisner on 6/4/17.
- */
 
 public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerViewHolder>{
     private ArrayList<Beer> mBeers = new ArrayList<>();
@@ -46,6 +43,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
 
     public  class BeerViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.beerNameTextView)TextView mBeerNameTextView;
+        @Bind(R.id.abvibu) TextView mAbvibu;
         private Context mContext;
 
         public BeerViewHolder(View itemView) {
@@ -56,6 +54,8 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
 
         public void bindBeer(Beer beer) {
             mBeerNameTextView.setText(beer.getName());
+            mAbvibu.setText("abv: " + beer.getAbv() + "   " + "ibu: " + beer.getIbu());
+
         }
 
     }
