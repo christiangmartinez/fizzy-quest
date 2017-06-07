@@ -19,10 +19,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class FizzyService {
-    public static void findBeers(String styleId, Callback callback) {
+    public static void findBeers(String name, Callback callback) {
         OkHttpClient client = new OkHttpClient.Builder().build();
         HttpUrl.Builder urlBuilder = HttpUrl.parse(Constants.FIZZY_BASE_URL).newBuilder();
-        urlBuilder.addQueryParameter(Constants.FIZZY_STYLE_QUERY_PARAMETER, styleId);
+        urlBuilder.addQueryParameter(Constants.FIZZY_STYLE_QUERY_PARAMETER, name + "*");
+        urlBuilder.addQueryParameter(Constants.FIZZY_ORDER_PARAM, Constants.FIZZY_ORDER_VALUE);
+        urlBuilder.addQueryParameter(Constants.FIZZY_SORTING_PARAM, Constants.FIZZY_SORTING_VALUE);
         urlBuilder.addQueryParameter(Constants.FIZZY_QUERY_PARAM, Constants.FIZZY_KEY);
         String url = urlBuilder.build().toString();
         Log.d("URL", url);
@@ -42,11 +44,7 @@ public class FizzyService {
                     JSONObject beerJSON = dataJSON.getJSONObject(i);
                     String beerId = beerJSON.getString("id");
                     String name = beerJSON.getString("nameDisplay");
-                    String description = beerJSON.getString("description");
-                    String abv = beerJSON.getString("abv");
-                    String ibu = beerJSON.getString("ibu");
-
-                    Beer beer = new Beer(beerId, name, description, abv, ibu);
+                    Beer beer = new Beer(beerId, name);
                     beers.add(beer);
                 }
             }
