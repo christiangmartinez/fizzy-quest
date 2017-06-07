@@ -12,5 +12,7 @@ public class Constants {
     public static final String FIZZY_ORDER_VALUE = "updateDate";
     public static final String FIZZY_SORTING_PARAM = "sort";
     public static final String FIZZY_SORTING_VALUE = "DESC";
+    public static final String FIZZY_BREW_PARAM = "withBreweries";
+    public static final String FIZZY_BREW_VALUE = "Y";
     public static final String FIZZY_QUERY_PARAM ="key";
 }

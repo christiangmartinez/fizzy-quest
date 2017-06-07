@@ -25,6 +25,7 @@ public class FizzyService {
         urlBuilder.addQueryParameter(Constants.FIZZY_STYLE_QUERY_PARAMETER, name + "*");
         urlBuilder.addQueryParameter(Constants.FIZZY_ORDER_PARAM, Constants.FIZZY_ORDER_VALUE);
         urlBuilder.addQueryParameter(Constants.FIZZY_SORTING_PARAM, Constants.FIZZY_SORTING_VALUE);
+        urlBuilder.addQueryParameter(Constants.FIZZY_BREW_PARAM, Constants.FIZZY_BREW_VALUE);
         urlBuilder.addQueryParameter(Constants.FIZZY_QUERY_PARAM, Constants.FIZZY_KEY);
         String url = urlBuilder.build().toString();
         Log.d("URL", url);
