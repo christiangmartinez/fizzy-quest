@@ -1,6 +1,7 @@
 package io.xtian.fizzyquest.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
 import io.xtian.fizzyquest.R;
 import io.xtian.fizzyquest.models.Beer;
 
-public class BeerDetailFragment extends Fragment {
+public class BeerDetailFragment extends Fragment implements View.OnClickListener{
     @Bind(R.id.brewskiName) TextView mBrewskiName;
     @Bind(R.id.brewskiDescription) TextView mBrewskiDescription;
     @Bind(R.id.brewskiAbv) TextView mBrewskiAbv;
@@ -47,6 +48,7 @@ public class BeerDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_beer_detail, container, false);
         ButterKnife.bind(this, view);
+        mBrewSite.setOnClickListener(this);
         mBrewskiName.setText(mBeer.getName());
         mBrewskiDescription.setText(mBeer.getDescription());
         mBrewskiAbv.setText(mBeer.getAbv());
@@ -54,5 +56,13 @@ public class BeerDetailFragment extends Fragment {
         mBrewName.setText(mBeer.getBrewery());
         mBrewSite.setText(mBeer.getBrewsite());
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == mBrewSite) {
+            Intent goBrewsite = new Intent(Intent.ACTION_VIEW, Uri.parse(mBeer.getBrewsite()));
+            startActivity(goBrewsite);
+        }
     }
 }
