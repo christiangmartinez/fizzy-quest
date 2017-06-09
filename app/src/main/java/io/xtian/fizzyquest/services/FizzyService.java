@@ -43,12 +43,14 @@ public class FizzyService {
                 JSONArray dataJSON = fizzyJSON.getJSONArray("data");
                 for (int i = 0; i < dataJSON.length(); i++) {
                     JSONObject beerJSON = dataJSON.getJSONObject(i);
+                    JSONObject breweryJSON = beerJSON.getJSONArray("breweries").getJSONObject(0);
                     String beerId = beerJSON.getString("id");
                     String name = beerJSON.getString("nameDisplay");
+                    String brewery = breweryJSON.getString("name");
                     String description = beerJSON.optString("description", "Description not available");
-                    String abv = beerJSON.optString("abv", "No Data");
-                    String ibu = beerJSON.optString("ibu", "No Data");
-                    Beer beer = new Beer(beerId, name, description, abv, ibu);
+                    String abv = beerJSON.optString("abv", "no data");
+                    String ibu = beerJSON.optString("ibu", "no data");
+                    Beer beer = new Beer(beerId, name, brewery, description, abv, ibu);
                     beers.add(beer);
                 }
             }

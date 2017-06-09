@@ -43,6 +43,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
 
     public  class BeerViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.beerNameTextView)TextView mBeerNameTextView;
+        @Bind(R.id.brewName)TextView mBrewName;
         @Bind(R.id.abvibu) TextView mAbvibu;
         private Context mContext;
 
@@ -54,7 +55,8 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
 
         public void bindBeer(Beer beer) {
             mBeerNameTextView.setText(beer.getName());
-            mAbvibu.setText("abv: " + beer.getAbv() + "   " + "ibu: " + beer.getIbu());
+            mBrewName.setText(beer.getBrewery());
+            mAbvibu.setText("ABV: " + beer.getAbv() + "   " + "IBU: " + beer.getIbu());
 
         }
 
