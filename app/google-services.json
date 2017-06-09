@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "333619066075",
+    "firebase_url": "https://fizzy-quest.firebaseio.com",
+    "project_id": "fizzy-quest",
+    "storage_bucket": "fizzy-quest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:333619066075:android:1600bcbdd71948fc",
+        "android_client_info": {
+          "package_name": "io.xtian.fizzyquest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "333619066075-jsthebljf0d02p1dliftfacjgvopvrj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.xtian.fizzyquest",
+            "certificate_hash": "fe6bc87567a6a44fd8beeeed29cbeece0580832d"
+          }
+        },
+        {
+          "client_id": "333619066075-tsgi5jip4kd9q92s4u18n59hsbukqo1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWrewoplMJTcU_GtKYxwCDTXKVWdL7Ots"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "333619066075-tsgi5jip4kd9q92s4u18n59hsbukqo1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
