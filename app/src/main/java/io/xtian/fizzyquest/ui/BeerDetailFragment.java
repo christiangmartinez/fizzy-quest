@@ -51,8 +51,8 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
         mBrewSite.setOnClickListener(this);
         mBrewskiName.setText(mBeer.getName());
         mBrewskiDescription.setText(mBeer.getDescription());
-        mBrewskiAbv.setText(mBeer.getAbv());
-        mBrewskiIbu.setText(mBeer.getIbu());
+        mBrewskiAbv.setText("ABV: " + mBeer.getAbv());
+        mBrewskiIbu.setText("IBU: " + mBeer.getIbu());
         mBrewName.setText(mBeer.getBrewery());
         mBrewSite.setText(mBeer.getBrewsite());
         return view;
