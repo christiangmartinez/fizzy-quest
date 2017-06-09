@@ -1,5 +1,8 @@
 package io.xtian.fizzyquest.models;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Beer {
     private String mBeerId;
     private String mName;
@@ -18,6 +21,8 @@ public class Beer {
         this.mAbv = abv;
         this.mIbu = ibu;
     }
+
+    public Beer() {}
 
     public String getBeerId() {
         return mBeerId;
