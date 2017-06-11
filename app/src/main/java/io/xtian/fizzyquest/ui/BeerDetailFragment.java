@@ -10,11 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.parceler.Parcels;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import io.xtian.fizzyquest.Constants;
 import io.xtian.fizzyquest.R;
 import io.xtian.fizzyquest.models.Beer;
 
@@ -49,6 +54,7 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
         View view = inflater.inflate(R.layout.fragment_beer_detail, container, false);
         ButterKnife.bind(this, view);
         mBrewSite.setOnClickListener(this);
+        mAddBeerQuest.setOnClickListener(this);
         mBrewskiName.setText(mBeer.getName());
         mBrewskiDescription.setText(mBeer.getDescription());
         mBrewskiAbv.setText("ABV: " + mBeer.getAbv());
@@ -63,6 +69,12 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
         if (v == mBrewSite) {
             Intent goBrewsite = new Intent(Intent.ACTION_VIEW, Uri.parse(mBeer.getBrewsite()));
             startActivity(goBrewsite);
+        }
+
+        if (v == mAddBeerQuest) {
+            DatabaseReference beerRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
+            beerRef.push().setValue(mBeer);
+            Toast.makeText(getContext(), "Added to quest log!", Toast.LENGTH_SHORT).show();
         }
     }
 }
