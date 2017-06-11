@@ -24,7 +24,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private DatabaseReference mSearchTermReference;
     private ValueEventListener mSearchTermReferenceListener;
     @Bind(R.id.userParams) EditText mUserParams;
-    @Bind(R.id.searchButton)Button mSearchButton;
+    @Bind(R.id.searchButton) Button mSearchButton;
+    @Bind(R.id.questLog) Button mQuestLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         mSearchButton.setOnClickListener(this);
+        mQuestLog.setOnClickListener(this);
     }
 
     @Override
@@ -71,7 +73,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         }
+        if (v == mQuestLog) {
+            Intent intent = new Intent(SearchActivity.this, SavedBeerListActivity.class);
+            startActivity(intent);
+        }
     }
+
     public void saveTermToFirebase(String searchTerm) {
         mSearchTermReference.push().setValue(searchTerm);
     }

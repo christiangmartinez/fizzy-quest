@@ -22,7 +22,8 @@
         </activity>
         <activity android:name=".ui.SearchActivity" />
         <activity android:name=".ui.ResultActivity" />
-        <activity android:name=".ui.BeerDetailActivity"></activity>
+        <activity android:name=".ui.BeerDetailActivity" />
+        <activity android:name=".ui.SavedBeerListActivity"></activity>
     </application>
 
 </manifest>
