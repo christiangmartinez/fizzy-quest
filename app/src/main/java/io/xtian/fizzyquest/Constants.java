@@ -15,4 +15,5 @@ public class Constants {
     public static final String FIZZY_BREW_PARAM = "withBreweries";
     public static final String FIZZY_BREW_VALUE = "Y";
     public static final String FIZZY_QUERY_PARAM ="key";
+    public static final String FIREBASE_CHILD_SEARCH_TERM = "searchTerm";
 }
