@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,16 +22,39 @@ import io.xtian.fizzyquest.R;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener{
     private DatabaseReference mSearchTermReference;
+    private ValueEventListener mSearchTermReferenceListener;
     @Bind(R.id.userParams) EditText mUserParams;
     @Bind(R.id.searchButton)Button mSearchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         mSearchTermReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SEARCH_TERM);
+
+        mSearchTermReferenceListener = mSearchTermReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot searchTermSnapshot : dataSnapshot.getChildren()) {
+                    String searchTerm = searchTermSnapshot.getValue().toString();
+                    Log.d("Search Terms updated", "searchTerm: " + searchTerm);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         mSearchButton.setOnClickListener(this);
+    }
+
+    @Override
+    protected  void onDestroy() {
+        super.onDestroy();
+        mSearchTermReference.removeEventListener(mSearchTermReferenceListener);
     }
 
     @Override
@@ -47,7 +73,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
     public void saveTermToFirebase(String searchTerm) {
-        mSearchTermReference.setValue(searchTerm);
+        mSearchTermReference.push().setValue(searchTerm);
     }
 
 }
