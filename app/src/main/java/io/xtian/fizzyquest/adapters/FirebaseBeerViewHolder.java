@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.parceler.Parcels;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -33,19 +34,13 @@ public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements 
     }
 
     public void bindBeer(Beer beer) {
-        TextView brewskiName = (TextView) mView.findViewById(R.id.brewskiName);
-        TextView brewskiDescription = (TextView) mView.findViewById(R.id.brewskiDescription);
-        TextView brewskiAbv = (TextView) mView.findViewById(R.id.brewskiAbv);
-        TextView brewskiIbu = (TextView) mView.findViewById(R.id.brewskiIbu);
+        TextView beerNameTextView = (TextView) mView.findViewById(R.id.beerNameTextView);
         TextView brewName = (TextView) mView.findViewById(R.id.brewName);
-        TextView brewSite = (TextView) mView.findViewById(R.id.brewSite);
+        TextView abvibu = (TextView) mView.findViewById(R.id.abvibu);
 
-        brewskiName.setText(beer.getName());
-        brewskiDescription.setText(beer.getDescription());
-        brewskiAbv.setText(beer.getAbv());
-        brewskiIbu.setText(beer.getIbu());
+        beerNameTextView.setText(beer.getName());
         brewName.setText(beer.getBrewery());
-        brewSite.setText(beer.getBrewsite());
+        abvibu.setText("ABV: " + beer.getAbv() + "   " + "IBU: " + beer.getIbu());
     }
 
     @Override
