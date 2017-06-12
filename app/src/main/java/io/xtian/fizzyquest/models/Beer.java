@@ -11,6 +11,8 @@ public class Beer {
     private String description;
     private String abv;
     private String ibu;
+    private String pushId;
+
     public Beer(String beerId, String name, String brewery, String brewsite, String description, String abv, String ibu) {
         this.beerId = beerId;
         this.name = name;
@@ -51,4 +53,9 @@ public class Beer {
         return ibu;
     }
 
+    public String  getPushId() { return pushId; }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
 }

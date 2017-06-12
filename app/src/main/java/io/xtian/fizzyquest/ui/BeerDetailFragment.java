@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -72,8 +74,18 @@ public class BeerDetailFragment extends Fragment implements View.OnClickListener
         }
 
         if (v == mAddBeerQuest) {
-            DatabaseReference beerRef = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS);
-            beerRef.push().setValue(mBeer);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+            DatabaseReference beerRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_BEERS)
+                    .child(uid);
+
+            DatabaseReference pushRef = beerRef.push();
+            String pushId = pushRef.getKey();
+            mBeer.setPushId(pushId);
+            pushRef.setValue(mBeer);
+
             Toast.makeText(getContext(), "Added to quest log!", Toast.LENGTH_SHORT).show();
         }
     }
