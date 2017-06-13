@@ -3,6 +3,7 @@ package io.xtian.fizzyquest.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -60,7 +61,7 @@ public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements 
                 }
                 int itemPosition = getLayoutPosition();
                 Intent intent  = new Intent(mContext, BeerDetailActivity.class);
-                intent.putExtra("position", itemPosition + "");
+                intent.putExtra("position", itemPosition);
                 intent.putExtra("beers", Parcels.wrap(beers));
                 mContext.startActivity(intent);
             }

@@ -3,6 +3,7 @@ package io.xtian.fizzyquest.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import io.xtian.fizzyquest.R;
 import io.xtian.fizzyquest.models.Beer;
 import io.xtian.fizzyquest.ui.BeerDetailActivity;
 
+import static java.lang.String.valueOf;
 
-public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerViewHolder> {
+
+public class  BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerViewHolder> {
     private ArrayList<Beer> mBeers = new ArrayList<>();
     private Context mContext;
 
@@ -70,6 +73,7 @@ public class BeerListAdapter extends RecyclerView.Adapter<BeerListAdapter.BeerVi
             int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, BeerDetailActivity.class);
             intent.putExtra("position", itemPosition);
+            Log.i("ITEMPOSITION", valueOf(itemPosition));
             intent.putExtra("beers", Parcels.wrap(mBeers));
             mContext.startActivity(intent);
         }
