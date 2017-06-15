@@ -3,6 +3,7 @@ package io.xtian.fizzyquest.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,6 +42,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         ButterKnife.bind(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mSharedPreferences.edit();
         mCreateAccountButton.setOnClickListener(this);
         mGoLogin.setOnClickListener(this);
         mAuth = FirebaseAuth.getInstance();
@@ -65,6 +68,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         }
 
         if (v == mCreateAccountButton) {
+            String usernameDisplay = mUsername.getText().toString();
+            addToSharedPreferences(usernameDisplay);
             createAccount();
         }
 
@@ -75,8 +80,6 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     }
 
     private void createAccount() {
-        String usernameDisplay = mUsername.getText().toString();
-        addToSharedPreferences(usernameDisplay);
         final String username = mUsername.getText().toString().trim();
         final String email = mEmail.getText().toString().trim();
         final String password = mPassword.getText().toString().trim();
