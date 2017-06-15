@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,15 +31,12 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @Bind(R.id.userParams) EditText mUserParams;
     @Bind(R.id.searchButton) Button mSearchButton;
     @Bind(R.id.questLog) Button mQuestLog;
+    @Bind(R.id.quester) TextView mQuester;
     private SharedPreferences mSharedPreferences;
     private String mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USERNAME_KEY, null);
-        Log.d("LOGGYNAME", mUsername);
-
         mSearchTermReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SEARCH_TERM);
         mSearchTermReferenceListener = mSearchTermReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -58,6 +56,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USERNAME_KEY, null);
+        mQuester.setText("Onward with thine quest, " + mUsername + "!");
         mSearchButton.setOnClickListener(this);
         mQuestLog.setOnClickListener(this);
     }
