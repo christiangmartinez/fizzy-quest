@@ -17,4 +17,5 @@ public class Constants {
     public static final String FIZZY_QUERY_PARAM ="key";
     public static final String FIREBASE_CHILD_SEARCH_TERM = "searchTerm";
     public static final String FIREBASE_CHILD_BEERS = "beers";
+    public static final String PREFERENCES_USERNAME_KEY = "username";
 }

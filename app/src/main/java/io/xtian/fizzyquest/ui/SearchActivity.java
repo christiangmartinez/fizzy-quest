@@ -1,6 +1,8 @@
 package io.xtian.fizzyquest.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,11 +30,16 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     @Bind(R.id.userParams) EditText mUserParams;
     @Bind(R.id.searchButton) Button mSearchButton;
     @Bind(R.id.questLog) Button mQuestLog;
+    private SharedPreferences mSharedPreferences;
+    private String mUsername;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mSearchTermReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SEARCH_TERM);
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mUsername = mSharedPreferences.getString(Constants.PREFERENCES_USERNAME_KEY, null);
+        Log.d("LOGGYNAME", mUsername);
 
+        mSearchTermReference = FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_CHILD_SEARCH_TERM);
         mSearchTermReferenceListener = mSearchTermReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
