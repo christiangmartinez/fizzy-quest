@@ -1,37 +1,71 @@
 package io.xtian.fizzyquest.models;
 
-public class Beer {
-    private String mBeerId;
-    private String mName;
-    private String mDescription;
-    private String mAbv;
-    private String mIbu;
+import org.parceler.Parcel;
 
-    public Beer(String beerId, String name, String description, String abv, String ibu) {
-        this.mBeerId = beerId;
-        this.mName = name;
-        this.mDescription = description;
-        this.mAbv = abv;
-        this.mIbu = ibu;
+@Parcel
+public class Beer {
+    private String beerId;
+    private String name;
+    private String brewery;
+    private String brewsite;
+    private String description;
+    private String abv;
+    private String ibu;
+    private String pushId;
+    String index;
+
+    public Beer(String beerId, String name, String brewery, String brewsite, String description, String abv, String ibu) {
+        this.beerId = beerId;
+        this.name = name;
+        this.brewery = brewery;
+        this.brewsite = brewsite;
+        this.description = description;
+        this.abv = abv;
+        this.ibu = ibu;
+        this.index = "not_specified";
     }
 
+    public Beer() {}
+
     public String getBeerId() {
-        return mBeerId;
+        return beerId;
     }
 
     public String getName() {
-        return mName;
+        return name;
+    }
+
+    public String getBrewery() {
+        return brewery;
+    }
+
+    public String getBrewsite() {
+        return brewsite;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public String getAbv() {
-        return mAbv;
+        return abv;
     }
 
     public String getIbu() {
-        return mIbu;
+        return ibu;
+    }
+
+    public String  getPushId() { return pushId; }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }
