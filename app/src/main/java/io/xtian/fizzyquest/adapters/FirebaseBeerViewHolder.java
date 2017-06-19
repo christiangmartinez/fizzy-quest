@@ -26,7 +26,7 @@ import io.xtian.fizzyquest.models.Beer;
 import io.xtian.fizzyquest.ui.BeerDetailActivity;
 import io.xtian.fizzyquest.util.OnStartDragListener;
 
-public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder {
     View mView;
     Context mContext;
     public TextView beerNameTextView;
@@ -35,7 +35,6 @@ public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements 
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        itemView.setOnClickListener(this);
     }
 
     public void bindBeer(Beer beer) {
@@ -46,32 +45,5 @@ public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements 
         beerNameTextView.setText(beer.getName());
         brewName.setText(beer.getBrewery());
         abvibu.setText("ABV: " + beer.getAbv() + "   " + "IBU: " + beer.getIbu());
-    }
-
-    @Override
-    public void onClick(View view) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = user.getUid();
-
-        final ArrayList<Beer> beers = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS).child(uid);
-        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    beers.add(snapshot.getValue(Beer.class));
-                }
-                int itemPosition = getLayoutPosition();
-                Intent intent  = new Intent(mContext, BeerDetailActivity.class);
-                intent.putExtra("position", itemPosition);
-                intent.putExtra("beers", Parcels.wrap(beers));
-                mContext.startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 }

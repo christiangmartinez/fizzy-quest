@@ -12,6 +12,7 @@ public class Beer {
     private String abv;
     private String ibu;
     private String pushId;
+    String index;
 
     public Beer(String beerId, String name, String brewery, String brewsite, String description, String abv, String ibu) {
         this.beerId = beerId;
@@ -21,6 +22,7 @@ public class Beer {
         this.description = description;
         this.abv = abv;
         this.ibu = ibu;
+        this.index = "not_specified";
     }
 
     public Beer() {}
@@ -57,5 +59,13 @@ public class Beer {
 
     public void setPushId(String pushId) {
         this.pushId = pushId;
+    }
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
     }
 }

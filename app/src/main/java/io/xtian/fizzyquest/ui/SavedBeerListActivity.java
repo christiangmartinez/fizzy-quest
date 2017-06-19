@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,6 +42,11 @@ public class SavedBeerListActivity extends AppCompatActivity implements OnStartD
         String uid = user.getUid();
 
         mBeerReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS).child(uid);
+
+        Query query = FirebaseDatabase.getInstance()
+                .getReference(Constants.FIREBASE_CHILD_BEERS)
+                .child(uid)
+                .orderByChild(Constants.FIREBASE_QUERY_INDEX);
 
         mFirebaseAdapter = new FirebaseBeerListAdapter(Beer.class,
                 R.layout.beer_list_item, FirebaseBeerViewHolder.class,
