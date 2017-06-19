@@ -24,10 +24,12 @@ import io.xtian.fizzyquest.Constants;
 import io.xtian.fizzyquest.R;
 import io.xtian.fizzyquest.models.Beer;
 import io.xtian.fizzyquest.ui.BeerDetailActivity;
+import io.xtian.fizzyquest.util.OnStartDragListener;
 
 public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements View.OnClickListener{
     View mView;
     Context mContext;
+    public TextView beerNameTextView;
 
     public FirebaseBeerViewHolder(View itemView) {
         super(itemView);
@@ -37,7 +39,7 @@ public class FirebaseBeerViewHolder  extends RecyclerView.ViewHolder implements 
     }
 
     public void bindBeer(Beer beer) {
-        TextView beerNameTextView = (TextView) mView.findViewById(R.id.beerNameTextView);
+        beerNameTextView = (TextView) mView.findViewById(R.id.beerNameTextView);
         TextView brewName = (TextView) mView.findViewById(R.id.brewName);
         TextView abvibu = (TextView) mView.findViewById(R.id.abvibu);
 

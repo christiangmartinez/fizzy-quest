@@ -1,6 +1,9 @@
 package io.xtian.fizzyquest.adapters;
 
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
@@ -26,8 +29,17 @@ public class FirebaseBeerListAdapter extends FirebaseRecyclerAdapter<Beer, Fireb
     }
 
     @Override
-    protected void populateViewHolder(FirebaseBeerViewHolder viewHolder, Beer model, int position) {
+    protected void populateViewHolder(final FirebaseBeerViewHolder viewHolder, Beer model, int position) {
         viewHolder.bindBeer(model);
+        viewHolder.beerNameTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (MotionEventCompat.getActionMasked(event) == MotionEvent.ACTION_DOWN) {
+                    mOnStartDragListener.onStartDrag(viewHolder);
+                }
+                return false;
+            }
+        });
     }
 
     @Override

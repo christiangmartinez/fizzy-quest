@@ -19,10 +19,12 @@ import io.xtian.fizzyquest.R;
 import io.xtian.fizzyquest.adapters.FirebaseBeerListAdapter;
 import io.xtian.fizzyquest.adapters.FirebaseBeerViewHolder;
 import io.xtian.fizzyquest.models.Beer;
+import io.xtian.fizzyquest.util.OnStartDragListener;
+import io.xtian.fizzyquest.util.SimpleItemTouchHelperCallback;
 
-public class SavedBeerListActivity extends AppCompatActivity {
+public class SavedBeerListActivity extends AppCompatActivity implements OnStartDragListener {
     private DatabaseReference mBeerReference;
-    private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private FirebaseBeerListAdapter mFirebaseAdapter;
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
     private ItemTouchHelper mItemTouchHelper;
 
@@ -39,14 +41,18 @@ public class SavedBeerListActivity extends AppCompatActivity {
         String uid = user.getUid();
 
         mBeerReference = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_BEERS).child(uid);
-        setUpFirebaseAdapter();
 
-        mFirebaseAdapter = new FirebaseBeerListAdapter(Beer.class, R.layout.beer_list_item,
-                FirebaseBeerViewHolder.class, mBeerReference, this, this);
+        mFirebaseAdapter = new FirebaseBeerListAdapter(Beer.class,
+                R.layout.beer_list_item, FirebaseBeerViewHolder.class,
+                mBeerReference, this, this);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mFirebaseAdapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
